@@ -1,0 +1,2 @@
+C:\Users\alanh\Documents\HadwareHackathon\GestureControls\GestureControls\bin\Debug\GestureControls.exe.config
+C:\Users\alanh\Documents\HadwareHackathon\RobotArm\GestureControls\bin\Debug\GestureControls.exe.config
