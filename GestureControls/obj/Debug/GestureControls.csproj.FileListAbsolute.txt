@@ -1,2 +1,10 @@
 C:\Users\alanh\Documents\HadwareHackathon\GestureControls\GestureControls\bin\Debug\GestureControls.exe.config
 C:\Users\alanh\Documents\HadwareHackathon\RobotArm\GestureControls\bin\Debug\GestureControls.exe.config
+C:\Users\alanh\Documents\HadwareHackathon\RobotArm\GestureControls\bin\Debug\GestureControls.exe
+C:\Users\alanh\Documents\HadwareHackathon\RobotArm\GestureControls\bin\Debug\GestureControls.pdb
+C:\Users\alanh\Documents\HadwareHackathon\RobotArm\GestureControls\bin\Debug\LeapCSharp.NET4.5.dll
+C:\Users\alanh\Documents\HadwareHackathon\RobotArm\GestureControls\obj\Debug\GestureControls.csprojResolveAssemblyReference.cache
+C:\Users\alanh\Documents\HadwareHackathon\RobotArm\GestureControls\obj\Debug\GestureControls.Properties.Resources.resources
+C:\Users\alanh\Documents\HadwareHackathon\RobotArm\GestureControls\obj\Debug\GestureControls.csproj.GenerateResource.Cache
+C:\Users\alanh\Documents\HadwareHackathon\RobotArm\GestureControls\obj\Debug\GestureControls.exe
+C:\Users\alanh\Documents\HadwareHackathon\RobotArm\GestureControls\obj\Debug\GestureControls.pdb
