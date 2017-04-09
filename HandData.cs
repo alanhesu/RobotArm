@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using Leap;
+using Leap.Vector;
 
 class HandData {
     
@@ -19,5 +20,10 @@ class HandData {
         this.roll = roll;
         this.pitch = pitch;
         this.grip = grip;
+    }
+
+    public override String ToString()
+    {
+        return sprintf("x: " + x + "y: " + y + "z: " + "roll: " + roll + "pitch: " + "grip: " + grip);
     }
 }

@@ -8,11 +8,14 @@
 using System;
 using System.Threading;
 using Leap;
-using Leap.Vector;
 
 class SampleListener
 {
     public HandData data;
+    public SampleListener()
+    {
+        data = new HandData(0, 0, 0, 0, 0, 0);
+    }
     public void OnInit(Controller controller)
     {
         Console.WriteLine("Initialized");
@@ -41,7 +44,7 @@ class SampleListener
             Console.WriteLine("No Hands in Frame, move one into the frame.");
         }
         else {
-            float[] WristPos = ToFloatArray(frame.Hands[0].WristPosition);
+            float[] WristPos = frame.Hands[0].WristPosition.ToFloatArray();
             float pitch = frame.Hands[0].Direction.Pitch * 180.0f / (float)Math.PI;
             if (pitch <= -90)
             {
@@ -61,7 +64,7 @@ class SampleListener
                 roll = -90;
             }
             float gripdist = frame.Hands[0].PinchDistance;
-            data = new HandData(WristPos[0], WristPos[1] - 254, WristPos[2] + 160, roll, pitch, gripdist);
+            data.setData((int)WristPos[0], (int)WristPos[1] - 254, (int)WristPos[2] - 350, roll + 90, pitch + 90, gripdist);            
         }
         /**
             Console.WriteLine(
@@ -166,6 +169,11 @@ class SampleListener
         }
         Console.WriteLine("[{0}] {1}", args.timestamp, args.message);
     }
+
+    public HandData GetHandData()
+    {
+        return data;
+    }
 }
 
 class SampleGrip
@@ -186,16 +194,18 @@ class SampleGrip
             controller.DeviceFailure += listener.OnDeviceFailure;
             controller.LogMessage += listener.OnLogMessage;
 
-            ArduinoControllerMain controller = new ArduinoControllerMain();
-            controller.SetComPort();
-            for (int i = 0; i < 50; i++)
+            ArduinoControllerMain ArduinoController = new ArduinoControllerMain();
+            ArduinoController.SetComPort();
+            while (true)
             {
-                Console.WriteLine(SampleListener.data);
-                controller.SendArduino(16, 129, 6, 140, 4, 30);
-                controller.SendArduino(16, 127, 13, 255, 4, 30);
-                controller.SendArduino(16, 127, 13, 0, 4, 30);
+                // Console.WriteLine(listener.GetHandData());
+                // ArduinoController.SendArduino(16, 129, 6, Convert.ToByte(listener.GetHandData().GetX()), 4, 30);                                
+                // ArduinoController.SendArduino(16, 127, 13, 255, 4, 30);
+                // ArduinoController.SendArduino(16, 127, 13, 0, 4, 30);
+                byte[] toArduino = listener.GetHandData().GetDataBytes();                
+                ArduinoController.SendArduino(toArduino[0], toArduino[1], toArduino[2], toArduino[3], toArduino[4], toArduino[5], 50);
             }
-            controller.ClosePort();
+            ArduinoController.ClosePort();
 
             // Keep this process running until Enter is pressed
             Console.WriteLine("Press any key to quit...");
